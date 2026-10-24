@@ -1,56 +1,84 @@
-import requests, re
+"""Download books from Project Gutenberg, clean them and cache them locally."""
+
+import re
 from pathlib import Path
 
-RAW = Path("data/raw")
-RAW.mkdir(parents=True, exist_ok=True)
+import requests
 
-def slug(title: str) -> str:
-    return re.sub(r'[^a-z0-9]+', '_', title.lower()).strip('_')
+from .catalog import Book
+
+RAW_DIR = Path("data/raw")
+
+# Mirrors tried in order. The cache URL is the one Gutenberg recommends for scripts.
+URL_PATTERNS = [
+    "https://www.gutenberg.org/cache/epub/{id}/pg{id}.txt",
+    "https://www.gutenberg.org/files/{id}/{id}-0.txt",
+    "https://www.gutenberg.org/files/{id}/{id}.txt",
+]
+
+MIN_CHARS = 20_000  # anything shorter is a failed download, not a novel
+
+_START = re.compile(r"\*{3}\s*START OF (?:THE|THIS) PROJECT GUTENBERG E-?BOOK[^*]*\*{3}", re.I)
+_END = re.compile(r"\*{3}\s*END OF (?:THE|THIS) PROJECT GUTENBERG E-?BOOK", re.I)
+_ILLUSTRATION = re.compile(r"\[Illustration[^\]]*\]", re.I)
+
+
+class BookError(RuntimeError):
+    pass
+
 
 def strip_gutenberg(text: str) -> str:
-    pattern = r"\*\*\*\s*START OF THE PROJECT GUTENBERG EBOOK.*?\*\*\*(.*?)\*\*\*\s*END OF THE PROJECT GUTENBERG EBOOK"
-    match = re.search(pattern, text, re.DOTALL | re.IGNORECASE)
-    return match.group(1).strip() if match else text.strip()
+    """Keep only the book itself: drop the Gutenberg header, licence and illustration tags."""
+    start = _START.search(text)
+    if start:
+        text = text[start.end():]
+    end = _END.search(text)
+    if end:
+        text = text[: end.start()]
+    text = _ILLUSTRATION.sub("", text)
+    return text.replace("\r\n", "\n").strip()
 
-def fetch_book(title: str) -> str:
-    cache = RAW / f"{slug(title)}.txt"
-    if cache.exists():
-        return cache.read_text(encoding="utf-8")
-    
-    meta = requests.get("https://gutendex.com/books/", params={"search": title}, timeout=120).json()
-    if not meta["results"]:
-        raise ValueError(f"Aucun livre trouvé pour : {title}")
-        
-    book = meta["results"][0]
-    
-    url = next((link for mime, link in book["formats"].items() if mime.startswith("text/plain")), None)
-    if not url:
-        raise ValueError(f"Format texte brut introuvable pour : {title}")
-        
-    text = requests.get(url, timeout=120).text
-    text = strip_gutenberg(text)
-    
-    cache.write_text(text, encoding="utf-8")
-    return text
 
-if __name__ == "__main__":
-    livres = [
-        "Alice's Adventures in Wonderland",
-        "Dracula",
-        "Frankenstein",
-        "The Picture of Dorian Gray",
-        "The Metamorphosis",
-        "Pride and Prejudice",
-        "The Time Machine",
-        "A Tale of Two Cities",
-        "The War of the Worlds",
-        "The Jungle Book"
-    ]
-    
-    for titre in livres:
-        print(f"Récupération de '{titre}'...")
+def validate(book: Book, text: str) -> None:
+    """Fail loudly instead of silently analysing an empty file or the wrong book."""
+    if len(text) < MIN_CHARS:
+        raise BookError(f"{book.title}: text too short ({len(text)} chars), download probably failed")
+    head = text[:5000].lower()
+    if not any(w.lower() in head for w in book.check_words):
+        raise BookError(
+            f"{book.title}: none of {book.check_words} found at the start of the text, "
+            "this is probably not the right book"
+        )
+
+
+def cache_path(book: Book, raw_dir: Path = RAW_DIR) -> Path:
+    return raw_dir / f"{book.key}.txt"
+
+
+def fetch_book(book: Book, raw_dir: Path = RAW_DIR) -> str:
+    path = cache_path(book, raw_dir)
+    if path.exists():
+        text = path.read_text(encoding="utf-8")
         try:
-            texte = fetch_book(titre)
-            print(f"  -> Succès ({len(texte)} caractères).")
-        except Exception as e:
-            print(f"  -> Erreur : {e}")
+            validate(book, text)
+            return text
+        except BookError:
+            path.unlink()  # bad cache (empty file, wrong book): download again
+
+    last_error = None
+    for pattern in URL_PATTERNS:
+        url = pattern.format(id=book.gutenberg_id)
+        try:
+            resp = requests.get(url, timeout=60)
+            resp.raise_for_status()
+        except requests.RequestException as exc:
+            last_error = exc
+            continue
+        resp.encoding = "utf-8"
+        text = strip_gutenberg(resp.text)
+        validate(book, text)
+        raw_dir.mkdir(parents=True, exist_ok=True)
+        path.write_text(text, encoding="utf-8")
+        return text
+
+    raise BookError(f"{book.title}: could not download Gutenberg #{book.gutenberg_id} ({last_error})")
