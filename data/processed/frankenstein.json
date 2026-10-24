@@ -1,0 +1,202 @@
+[
+  {
+    "segment": 1,
+    "scores": {
+      "absurde": 4,
+      "peur": 6,
+      "douceur": 7
+    }
+  },
+  {
+    "segment": 2,
+    "scores": {
+      "absurde": 2,
+      "peur": 6,
+      "douceur": 4
+    }
+  },
+  {
+    "segment": 3,
+    "scores": {
+      "absurde": 2,
+      "peur": 1,
+      "douceur": 8
+    }
+  },
+  {
+    "segment": 4,
+    "scores": {
+      "absurde": 2,
+      "peur": 8,
+      "douceur": 4
+    }
+  },
+  {
+    "segment": 5,
+    "scores": {
+      "absurde": 2,
+      "peur": 1,
+      "douceur": 8
+    }
+  },
+  {
+    "segment": 6,
+    "scores": {
+      "absurde": 8,
+      "peur": 9,
+      "douceur": 2
+    }
+  },
+  {
+    "segment": 7,
+    "scores": {
+      "absurde": 2,
+      "peur": 6,
+      "douceur": 8
+    }
+  },
+  {
+    "segment": 8,
+    "scores": {
+      "absurde": 2,
+      "peur": 9,
+      "douceur": 1
+    }
+  },
+  {
+    "segment": 9,
+    "scores": {
+      "absurde": 8,
+      "peur": 9,
+      "douceur": 2
+    }
+  },
+  {
+    "segment": 10,
+    "scores": {
+      "absurde": 4,
+      "peur": 8,
+      "douceur": 2
+    }
+  },
+  {
+    "segment": 11,
+    "scores": {
+      "absurde": 3,
+      "peur": 5,
+      "douceur": 8
+    }
+  },
+  {
+    "segment": 12,
+    "scores": {
+      "absurde": 7,
+      "peur": 6,
+      "douceur": 8
+    }
+  },
+  {
+    "segment": 13,
+    "scores": {
+      "absurde": 4,
+      "peur": 6,
+      "douceur": 8
+    }
+  },
+  {
+    "segment": 14,
+    "scores": {
+      "absurde": 2,
+      "peur": 1,
+      "douceur": 8
+    }
+  },
+  {
+    "segment": 15,
+    "scores": {
+      "absurde": 2,
+      "peur": 8,
+      "douceur": 9
+    }
+  },
+  {
+    "segment": 16,
+    "scores": {
+      "absurde": 8,
+      "peur": 2,
+      "douceur": 9
+    }
+  },
+  {
+    "segment": 17,
+    "scores": {
+      "absurde": 2,
+      "peur": 8,
+      "douceur": 3
+    }
+  },
+  {
+    "segment": 18,
+    "scores": {
+      "absurde": 8,
+      "peur": 9,
+      "douceur": 1
+    }
+  },
+  {
+    "segment": 19,
+    "scores": {
+      "absurde": 6,
+      "peur": 8,
+      "douceur": 4
+    }
+  },
+  {
+    "segment": 20,
+    "scores": {
+      "absurde": 4,
+      "peur": 8,
+      "douceur": 2
+    }
+  },
+  {
+    "segment": 21,
+    "scores": {
+      "absurde": 2,
+      "peur": 8,
+      "douceur": 1
+    }
+  },
+  {
+    "segment": 22,
+    "scores": {
+      "absurde": 2,
+      "peur": 8,
+      "douceur": 4
+    }
+  },
+  {
+    "segment": 23,
+    "scores": {
+      "absurde": 8,
+      "peur": 9,
+      "douceur": 2
+    }
+  },
+  {
+    "segment": 24,
+    "scores": {
+      "absurde": 5,
+      "peur": 8,
+      "douceur": 2
+    }
+  },
+  {
+    "segment": 25,
+    "scores": {
+      "absurde": 3,
+      "peur": 9,
+      "douceur": 2
+    }
+  }
+]

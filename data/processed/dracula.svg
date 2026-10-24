@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 950" width="100%" height="100%">
+    <defs>
+        <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#050000"/><stop offset="100%" stop-color="#330000"/></linearGradient>
+        <radialGradient id="catGradFear" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#2a0000"/><stop offset="100%" stop-color="#000000"/></radialGradient>
+        <radialGradient id="catGradSweet" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#2c3e50"/><stop offset="100%" stop-color="#0f172a"/></radialGradient>
+        <!-- Cheshire Fade: Magenta fades entirely into transparency at the edges/bottom -->
+        <radialGradient id="catGradAbsurd" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#cc00ff" stop-opacity="0.8"/><stop offset="100%" stop-color="#4a0080" stop-opacity="0.0"/></radialGradient>
+        
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur1" />
+            <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur2" />
+            <feMerge><feMergeNode in="blur2" /><feMergeNode in="blur1" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
+        <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="15" stdDeviation="10" flood-color="#000000" flood-opacity="0.9"/>
+        </filter>
+    </defs>
+    
+    <rect width="100%" height="100%" fill="url(#bg)"/>
+    <path d="M 0 700 Q 250 650 500 700" stroke="#ff1a1a" stroke-width="1" fill="none" opacity="0.1" filter="url(#glow)"/><path d="M 0 660 Q 350 590 500 670" stroke="#ff1a1a" stroke-width="1" fill="none" opacity="0.1" filter="url(#glow)"/><path d="M 0 620 Q 250 530 500 640" stroke="#ff1a1a" stroke-width="1" fill="none" opacity="0.1" filter="url(#glow)"/><path d="M 0 580 Q 350 470 500 610" stroke="#ff1a1a" stroke-width="1" fill="none" opacity="0.1" filter="url(#glow)"/><path d="M 0 540 Q 250 410 500 580" stroke="#ff1a1a" stroke-width="1" fill="none" opacity="0.1" filter="url(#glow)"/><path d="M 0 500 Q 350 350 500 550" stroke="#ff1a1a" stroke-width="1" fill="none" opacity="0.1" filter="url(#glow)"/><path d="M 0 460 Q 250 290 500 520" stroke="#ff1a1a" stroke-width="1" fill="none" opacity="0.1" filter="url(#glow)"/><path d="M 0 420 Q 350 230 500 490" stroke="#ff1a1a" stroke-width="1" fill="none" opacity="0.1" filter="url(#glow)"/><path d="M 0 380 Q 250 170 500 460" stroke="#ff1a1a" stroke-width="1" fill="none" opacity="0.1" filter="url(#glow)"/><path d="M 0 340 Q 350 110 500 430" stroke="#ff1a1a" stroke-width="1" fill="none" opacity="0.1" filter="url(#glow)"/><path d="M 0 300 Q 250 50 500 400" stroke="#ff1a1a" stroke-width="1" fill="none" opacity="0.1" filter="url(#glow)"/><path d="M 0 260 Q 350 -10 500 370" stroke="#ff1a1a" stroke-width="1" fill="none" opacity="0.1" filter="url(#glow)"/><path d="M 0 220 Q 250 -70 500 340" stroke="#ff1a1a" stroke-width="1" fill="none" opacity="0.1" filter="url(#glow)"/><path d="M 0 180 Q 350 -130 500 310" stroke="#ff1a1a" stroke-width="1" fill="none" opacity="0.1" filter="url(#glow)"/><path d="M 0 140 Q 250 -190 500 280" stroke="#ff1a1a" stroke-width="1" fill="none" opacity="0.1" filter="url(#glow)"/>
+    
+    <circle cx="250" cy="300" r="180" fill="#ff1a1a" opacity="0.04" filter="url(#glow)"/>
+    
+    <!-- Queue -->
+    <path d="M 250 560 L 238 584.0 L 334 602.0 L 154 623.0 L 346 639.5 L 238 663.5 L 262 690.5 L 202 717.5 L 346 741.5 L 178 762.5 L 298 780.5 L 178 807.5 L 346 824.0 L 166 843.5 L 346 867.5 L 142 887.0 L 346 903.5 L 154 927.5 L 274 954.5 L 178 975.5 L 322 993.5 L 154 1013.0 L 334 1031.0 L 178 1049.0 L 322 1070.0 L 154 1091.0 L 322 1112.0 L 178 1139.0 " fill="none" stroke="#ff1a1a" stroke-width="5" stroke-linejoin="round" filter="url(#glow)" opacity="0.9"/>
+    <path d="M 250 560 L 238 584.0 L 334 602.0 L 154 623.0 L 346 639.5 L 238 663.5 L 262 690.5 L 202 717.5 L 346 741.5 L 178 762.5 L 298 780.5 L 178 807.5 L 346 824.0 L 166 843.5 L 346 867.5 L 142 887.0 L 346 903.5 L 154 927.5 L 274 954.5 L 178 975.5 L 322 993.5 L 154 1013.0 L 334 1031.0 L 178 1049.0 L 322 1070.0 L 154 1091.0 L 322 1112.0 L 178 1139.0 " fill="none" stroke="#ffffff" stroke-width="2" stroke-linejoin="round" opacity="0.9"/>
+    
+    <!-- Corps & Tête -->
+    <path d="M 210 230 Q 120 350, 140 550 L 120 570 L 380 570 L 360 550 Q 380 350, 290 230 Z" fill="url(#catGradFear)" filter="url(#shadow)"/>
+    <path d="M 250 240 C 170 240, 180 170, 190 130 L 160 60 L 210 110 Q 250 125, 290 110 L 340 60 L 310 130 C 320 170, 330 240, 250 240 Z" fill="url(#catGradFear)" filter="url(#shadow)"/>
+    
+    <!-- Visage -->
+    <polygon points="190,160 220,150 205,165" fill="#ff1a1a" filter="url(#glow)"/>
+    <polygon points="310,160 280,150 295,165" fill="#ff1a1a" filter="url(#glow)"/>
+    
+    
+    <text x="250" y="900" font-family="Georgia, serif" font-size="28" fill="#ffffff" text-anchor="middle" letter-spacing="6" opacity="0.9" filter="url(#shadow)">DRACULA</text>
+    <text x="250" y="925" font-family="Arial, sans-serif" font-size="10" fill="#ff1a1a" text-anchor="middle" letter-spacing="4" opacity="0.6">EMOTIONAL DATA PORTRAIT</text>
+    </svg>
